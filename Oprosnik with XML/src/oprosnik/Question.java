@@ -2,17 +2,17 @@ package oprosnik;
 
 public class Question {
 
-    private String questionItself;
+    private String questionText;
     private String[] allAnswers;
     private int chosenAnswerID = 0;
     private int rightAnswerID;
 
-    public String getQuestionItself() {
-        return questionItself;
+    public String getQuestionText() {
+        return questionText;
     }
 
-    public void setQuestionItself(String questionItself) {
-        this.questionItself = questionItself;
+    public void setQuestionText(String questionItself) {
+        this.questionText = questionItself;
     }
 
     public String[] getAllAnswers() {

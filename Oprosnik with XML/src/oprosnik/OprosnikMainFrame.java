@@ -24,7 +24,6 @@ public class OprosnikMainFrame extends javax.swing.JFrame {
 
     public OprosnikMainFrame() throws IOException, SAXException, ParserConfigurationException {
         initComponents();
-
         setLocationRelativeTo(null);
         ArrayList<Integer> al = new ArrayList();
         nextQuestionButton.setEnabled(false);
@@ -45,7 +44,6 @@ public class OprosnikMainFrame extends javax.swing.JFrame {
         beginTestButton = new javax.swing.JButton();
         answersPanel = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
-        testButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -100,13 +98,6 @@ public class OprosnikMainFrame extends javax.swing.JFrame {
                 .addGap(0, 202, Short.MAX_VALUE))
         );
 
-        testButton.setText("Test");
-        testButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                testButtonActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -130,16 +121,13 @@ public class OprosnikMainFrame extends javax.swing.JFrame {
                                 .addComponent(nextQuestionButton, javax.swing.GroupLayout.PREFERRED_SIZE, 202, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(113, 113, 113)
                                 .addComponent(finishButton, javax.swing.GroupLayout.PREFERRED_SIZE, 233, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(beginTestButton, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 233, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(testButton, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(beginTestButton, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 233, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(testButton)
-                .addGap(47, 47, 47)
+                .addGap(92, 92, 92)
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(questionField, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -179,7 +167,7 @@ public class OprosnikMainFrame extends javax.swing.JFrame {
         } catch (SAXException | IOException | ParserConfigurationException ex) {
             Logger.getLogger(OprosnikMainFrame.class.getName()).log(Level.SEVERE, null, ex);
         }
-        questionField.setText(allQuestions.get(currentDisplayedQuestion).getQuestionItself());
+        questionField.setText(allQuestions.get(currentDisplayedQuestion).getQuestionText());
         nextQuestionButton.setEnabled(true);
         answersButtonGroup = setAnswersOnDisplay();
     }//GEN-LAST:event_beginTestButtonActionPerformed
@@ -191,7 +179,7 @@ public class OprosnikMainFrame extends javax.swing.JFrame {
             nextQuestionButton.setEnabled(false);
         }
         previousQuestionButton.setEnabled(true);
-        questionField.setText(allQuestions.get(currentDisplayedQuestion).getQuestionItself());
+        questionField.setText(allQuestions.get(currentDisplayedQuestion).getQuestionText());
         answersButtonGroup = setAnswersOnDisplay();
         int selectedAnswer = allQuestions.get(currentDisplayedQuestion).getChosenAnswerID();
     }//GEN-LAST:event_nextQuestionButtonActionPerformed
@@ -204,15 +192,9 @@ public class OprosnikMainFrame extends javax.swing.JFrame {
             previousQuestionButton.setEnabled(false);
         }
         nextQuestionButton.setEnabled(true);
-        questionField.setText(allQuestions.get(currentDisplayedQuestion).getQuestionItself());
+        questionField.setText(allQuestions.get(currentDisplayedQuestion).getQuestionText());
         answersButtonGroup = setAnswersOnDisplay();
     }//GEN-LAST:event_previousQuestionButtonActionPerformed
-
-    private void testButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_testButtonActionPerformed
-        for (int i = 0; i < allQuestions.size(); i++) {
-            System.out.println(allQuestions.get(i).getChosenAnswerID());
-        }
-    }//GEN-LAST:event_testButtonActionPerformed
 
     public static void main(String args[]) {
 
@@ -237,7 +219,6 @@ public class OprosnikMainFrame extends javax.swing.JFrame {
     private javax.swing.JButton nextQuestionButton;
     private javax.swing.JButton previousQuestionButton;
     private javax.swing.JTextField questionField;
-    private javax.swing.JButton testButton;
     // End of variables declaration//GEN-END:variables
     private final String filePath = "C:/JavaLearn/Актуальные программы/Oprosnik with XML/Questions.xml";
     private ArrayList<Question> allQuestions;
@@ -283,14 +264,14 @@ public class OprosnikMainFrame extends javax.swing.JFrame {
         DocumentBuilder db = dbf.newDocumentBuilder();
         Document doc = db.parse(file);
         doc.getDocumentElement().normalize();
-        NodeList nodeLst = doc.getElementsByTagName("Question");
-        for (int s = 0; s < nodeLst.getLength(); s++) {
+        NodeList allQuestions = doc.getElementsByTagName("Question");
+        for (int s = 0; s < allQuestions.getLength(); s++) {
             Question question = new Question();
-            Node fstNode = nodeLst.item(s);
+            Node fstNode = allQuestions.item(s);
             if (fstNode.getNodeType() == Node.ELEMENT_NODE) {
-                Element fstElmnt = (Element) fstNode;
-                question.setQuestionItself(fstElmnt.getAttribute("QuestionText"));
-                NodeList answerList = fstElmnt.getElementsByTagName("Answer");
+                Element element = (Element) fstNode;
+                question.setQuestionText(element.getAttribute("QuestionText"));
+                NodeList answerList = element.getElementsByTagName("Answer");
                 String[] tempAllAnswers = new String[answerList.getLength()];
                 for (int i = 0; i < answerList.getLength(); i++) {
                     Element answer = (Element) answerList.item(i);
@@ -298,7 +279,7 @@ public class OprosnikMainFrame extends javax.swing.JFrame {
                     tempAllAnswers[i] = ((Node) answerNL.item(0)).getNodeValue();
                 }
                 question.setAllAnswers(tempAllAnswers);
-                NodeList rightAnswerList = fstElmnt.getElementsByTagName("Right_answer");
+                NodeList rightAnswerList = element.getElementsByTagName("Right_answer");
                 Element rightAnswer = (Element) rightAnswerList.item(0);
                 NodeList rightAnswerNL = rightAnswer.getChildNodes();
                 int rightAnswerID = Integer.parseInt(((Node) rightAnswerNL.item(0)).getNodeValue());
