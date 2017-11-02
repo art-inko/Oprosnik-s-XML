@@ -1,0 +1,31 @@
+﻿Tag_Question 1. это вопрос 
+
+Tag_answer 1. а это ответ
+Tag_answer 2. еще ответ
+Tag_answer 3. третий ответ
+Tag_answer 4. последний ответ 
+Right_answer 2
+
+Tag_Question 2. второй вопрос
+
+Tag_answer 1. а это ответ на второй вопрос
+Tag_answer 2. еще ответ на второй вопрос
+Tag_answer 3. третий ответ на второй вопрос
+
+Right_answer 3
+
+Tag_Question 3. Третий вопрос
+
+Tag_answer 1. а это ответ на третий вопрос
+Tag_answer 2. еще ответ на третий вопрос
+Tag_answer 3. третий ответ на третий вопрос
+Tag_answer 4. предпоследний ответ на третий вопрос
+Tag_answer 5. последний ответ на третий вопрос
+Right_answer 1
+
+Tag_Question 4. Вопрос номер 4
+Tag_answer 1. а это ответ на вопрос номер 4
+Tag_answer 2. еще ответ на вопрос номер 4
+Tag_answer 3. третий ответ на вопрос номер 4
+Tag_answer 4. последний ответ на вопрос номер 4
+Right_answer 2

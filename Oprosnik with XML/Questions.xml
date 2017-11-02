@@ -1,0 +1,42 @@
+<?xml version="1.0"?>
+<Questions>
+	<Question QuestionText="это первый вопрос"> 
+	
+		<Answer>  а первый это ответ </Answer>
+		<Answer>  еще второй ответ </Answer>
+		<Answer>  третий ответ </Answer>
+		<Answer>  последний четвертый ответ на первый вопрос</Answer>
+		<Right_answer>2</Right_answer>
+
+	</Question>
+
+	<Question QuestionText="второй вопрос"> 
+	
+		<Answer> 1. а это ответ на второй вопрос</Answer>
+		<Answer> 2. еще ответ на второй вопрос</Answer>
+		<Answer> 3. третий ответ на второй вопрос</Answer>
+		<Right_answer>3</Right_answer>
+	
+	</Question>
+	
+	<Question QuestionText="Третий вопрос"> 
+	
+		<Answer> 1. а это ответ на третий вопрос</Answer>
+		<Answer> 2. еще ответ на третий вопрос</Answer>
+		<Answer> 3. третий ответ на третий вопрос</Answer>
+		<Answer> 4. предпоследний ответ на третий вопрос</Answer>
+		<Answer> 5. последний ответ на третий вопрос</Answer>
+		<Right_answer>1</Right_answer>
+	
+	</Question>
+
+	<Question QuestionText="Вопрос номер 4"> 
+	
+		<Answer> 1. а это ответ на вопрос номер 4</Answer>
+		<Answer> 2. еще ответ на вопрос номер 4</Answer>
+		<Answer> 3. третий ответ на вопрос номер 4</Answer>
+		<Answer> 4. последний ответ на вопрос номер 4</Answer>
+		<Right_answer>2</Right_answer>
+
+		</Question>
+</Questions>
